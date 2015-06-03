@@ -10,7 +10,12 @@ library(sqldf)
 df <- read.csv.sql("household_power_consumption.txt", sql = "select * from file where Date in ('1/2/2007','2/2/2007') ", sep=";", header=T)
 ## Convert Date and Time variables from character class to Date and Time Classes
 library(dplyr)
+## first combine Date & Time variables into a new column
 df_tidy <- mutate(df,DateTime = paste(df$Date,df$Time))
+## now set the new column to class POSIXxx
 df_tidy$DateTime <- strptime(df_tidy$DateTime,"%d/%m/%Y %H:%M:%S")
+## drop the original Date and Time columns
 df_tidy <- df_tidy[,3:10]
 ## rm(list=ls())
+## clean up unneeded variables from the environment
+rm(df)
