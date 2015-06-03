@@ -1,4 +1,5 @@
 with(df_tidy, plot(DateTime, Sub_metering_1, type = "n", ylab="Energy Sub Metering", xlab=""))
+#png("plot3.png", width=480, height=480, type= "cairo")
 with(df_tidy, lines(DateTime, Sub_metering_1, col = "black"))
 with(df_tidy, lines(DateTime, Sub_metering_2, col = "red"))
 with(df_tidy, lines(DateTime, Sub_metering_3, col = "blue"))
